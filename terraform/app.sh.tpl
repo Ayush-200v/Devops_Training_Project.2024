@@ -9,4 +9,4 @@ sudo docker run -d \
     -e MYSQL_PASSWORD=admin \
     -e MYSQL_DB=mydb \
     -p 80:5000 \
-    dipanshu13/devops_session_project:v1
+    dipanshu13/devops_session_project:v2
