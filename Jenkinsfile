@@ -21,14 +21,14 @@ pipeline {
             steps {
                 script {
                     // export terraform variable
-                    sh "alias terraform="/opt/homebrew/bin/terraform" // for my mac"
+                    // sh "alias terraform="/opt/homebrew/bin/terraform" // for my mac"
 
                     // Setup Terraform
-                    sh "terraform --version"
+                    sh "/opt/homebrew/bin/terraform --version"
                     
                     // Initialize Terraform
                     dir(TERRAFORM_DIR) {
-                        sh "terraform init"
+                        sh "/opt/homebrew/bin/terraform init"
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
                 script {
                     // Apply Terraform configuration
                     dir(TERRAFORM_DIR) {
-                        sh "terraform apply -auto-approve"
+                        sh "/opt/homebrew/bin/terraform apply -auto-approve"
                     }
                 }
             }
@@ -51,10 +51,10 @@ pipeline {
 
                     dir(TERRAFORM_DIR) {
                         // Retrieve outputs from Terraform
-                        def publicInstancePublicIp = sh(script: "terraform output -raw public_instance_public_ip", returnStdout: true).trim()
+                        def publicInstancePublicIp = sh(script: "/opt/homebrew/bin/terraform output -raw public_instance_public_ip", returnStdout: true).trim()
 
                         // Print outputs for verification
-                        sh "terraform output"
+                        sh "/opt/homebrew/bin/terraform output"
 
                         // Perform testing
                         // Example curl request to the public instance
