@@ -19,6 +19,9 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 script {
+                    // export terraform variable
+                    alias terraform="/opt/homebrew/bin/terraform" // for my mac
+
                     // Setup Terraform
                     sh "terraform --version"
                     
