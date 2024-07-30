@@ -4,6 +4,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        TERRAFORM_DIR = "terraform"
         AWS_DEFAULT_REGION = 'us-west-2'
         GIT_REPO = 'https://github.com/i-dipanshu/devops-session-project-24'
         GIT_BRANCH = 'main'
@@ -20,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // export terraform variable
-                    alias terraform="/opt/homebrew/bin/terraform" // for my mac
+                    sh "alias terraform="/opt/homebrew/bin/terraform" // for my mac"
 
                     // Setup Terraform
                     sh "terraform --version"
@@ -47,15 +48,18 @@ pipeline {
         stage('Testing') {
             steps {
                 script {
-                    // Retrieve outputs from Terraform
-                    def publicInstancePublicIp = sh(script: "terraform output -raw public_instance_public_ip", returnStdout: true).trim()
 
-                    // Print outputs for verification
-                    sh "terraform output"
+                    dir(TERRAFORM_DIR) {
+                        // Retrieve outputs from Terraform
+                        def publicInstancePublicIp = sh(script: "terraform output -raw public_instance_public_ip", returnStdout: true).trim()
 
-                    // Perform testing
-                    // Example curl request to the public instance
-                    sh "curl http://${publicInstancePublicIp}:80" // Adjust port as necessary
+                        // Print outputs for verification
+                        sh "terraform output"
+
+                        // Perform testing
+                        // Example curl request to the public instance
+                        sh "curl http://${publicInstancePublicIp}:80" // Adjust port as necessary
+                    }
                 }
             }
         }
