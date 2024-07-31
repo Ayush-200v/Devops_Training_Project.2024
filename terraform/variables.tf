@@ -25,5 +25,5 @@ variable "instance_type" {
 
 variable "ami" {
   description = "The AMI ID for the EC2 instances"
-  default     = "ami-0bb87453e9e2ee2a9" # Ubuntu image with docker and mysql5.7 image
+  default     = "ami-0bb87453e9e2ee2a9" # Ubuntu image with docker and mysql5.7 image (if not available creating on ami which has docker and mysql5.7)
 }

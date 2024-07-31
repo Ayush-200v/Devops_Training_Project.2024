@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo docker pull dipanshu13/devops_session_project:v1
+sudo docker pull <dockerhub-username>/devops_session_project:lastest
 
 sudo docker run -d \
     --name devops_session_project \
@@ -9,4 +9,4 @@ sudo docker run -d \
     -e MYSQL_PASSWORD=admin \
     -e MYSQL_DB=mydb \
     -p 80:5000 \
-    dipanshu13/devops_session_project:v2
+    <dockerhub-username>/devops_session_project:latest

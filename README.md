@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone this repository** (if you haven't already):
 
    ```bash
-   git clone https://github.com/i-dipanshu/devops-session-project-24
+   git clone https://github.com/<your-user-name>/devops-session-project-24
    ```
 
 2. **Navigate to the project directory**:

@@ -6,9 +6,9 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
         TERRAFORM_DIR = "terraform"
         AWS_DEFAULT_REGION = 'us-west-2'
-        GIT_REPO = 'https://github.com/i-dipanshu/devops-session-project-24'
+        GIT_REPO = 'https://github.com/<your-user-name>/devops-session-project-24'
         GIT_BRANCH = 'main'
-        PATH = "/opt/homebrew/bin:${env.PATH}"
+        PATH = "/opt/homebrew/bin:${env.PATH}" // path to terraform binary
     }
 
     stages {
@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
+        stage('Initialize Terraform') {
             steps {
                 script {
 
@@ -33,7 +33,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Create Infra and Deploy Apps') {
             steps {
                 script {
                     // Apply Terraform configuration
